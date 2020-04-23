@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useRouteMatch, Link } from 'react-router-dom'
 import { FiChevronLeft, FiChevronRight } from 'react-icons/fi'
+import {AiFillStar, AiOutlineFork, AiFillExclamationCircle} from 'react-icons/ai';
 import api from '../../services/api'
 
 import logoImg from '../../assets/logo.svg';
@@ -84,15 +85,15 @@ const Repository: React.FC = () => {
                     <ul>
                         <li>
                             <strong>{repository.stargazers_count} </strong>
-                            <span>Stars</span>
+                            <span><AiFillStar/> Stars</span>
                         </li>
                         <li>
                             <strong>{repository.forks_count}</strong>
-                            <span>Forks</span>
+                            <span><AiOutlineFork/> Forks</span>
                         </li>
                         <li>
                             <strong>{repository.open_issues_count}</strong>
-                            <span>Issues Abertas</span>
+                            <span><AiFillExclamationCircle/> Issues Abertas</span>
                         </li>
                     </ul>
 
@@ -104,13 +105,13 @@ const Repository: React.FC = () => {
 
                 {issues.map((issue) => (
 
-                    <Link key={issue.id} to={issue.html_url}>
+                    <a key={issue.id} target="blank" href={issue.html_url}>
                         <div>
                             <strong>{issue.title}</strong>
                             <p>{issue.user.login}</p>
                         </div>
                         <FiChevronRight size={20} />
-                    </Link>
+                    </a>
 
                 ))}
 
